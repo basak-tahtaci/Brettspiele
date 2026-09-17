@@ -14,18 +14,18 @@ public class BoardGameService {
     private final BoardGameRepository boardGameRepository;
 
     // Konstruktor für Dependency Injection:
-    // Spring Boot erkennt den Konstruktor und übergibt ("injiziert") automatisch das BoardGameRepository.
+
     public BoardGameService(BoardGameRepository boardGameRepository) {
         this.boardGameRepository = boardGameRepository;
     }
 
-    // Methode 1: Alle Brettspiele abrufen
+    // Methode 1 Alle Brettspiele abrufen
     public List<BoardGame> getAllBoardGames() {
         // Ruft die findAll() Methode des Repositorys auf die alle Dokumente aus der MongoDB liest
         return boardGameRepository.findAll();
     }
 
-    // Methode 2: Ein neues Brettspiel hinzufügen
+    // Methode 2 neues Brettspiel hinzufügen
     public BoardGame addBoardGame(BoardGame boardGame) {
         // Ruft die save() Methode des Repo auf
         return boardGameRepository.save(boardGame);

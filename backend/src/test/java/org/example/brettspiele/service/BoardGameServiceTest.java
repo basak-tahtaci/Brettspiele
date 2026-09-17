@@ -11,22 +11,21 @@ import static org.mockito.Mockito.*;
 
 class BoardGameServiceTest {
 
-    // 1. Repository faken (reines Mockito, keine DB nötig!)
     private final BoardGameRepository boardGameRepository = mock(BoardGameRepository.class);
 
-    // 2. Service mit dem gefakten Repository erstellen
+    // Service mit  gefakten Repository erstellen
     private final BoardGameService boardGameService = new BoardGameService(boardGameRepository);
 
     @Test
     void getAllBoardGames_shouldReturnListOfGames() {
-        // GIVEN - Vorbereitung des Mocks
+        // GIVEN
         BoardGame game = new BoardGame("1", "Die Burgen von Burgund", 1, 4, 120, "Strategie", "");
         when(boardGameRepository.findAll()).thenReturn(List.of(game));
 
-        // WHEN - Ausführung
+        // WHEN
         List<BoardGame> actual = boardGameService.getAllBoardGames();
 
-        // THEN - Überprüfung
+        // THEN
         List<BoardGame> expected = List.of(game);
         assertEquals(expected, actual);
         verify(boardGameRepository).findAll(); // Prüft, ob das Mock-Repo aufgerufen wurde
