@@ -34,4 +34,37 @@ public class BoardGameController {
     public BoardGame addBoardGame(@RequestBody BoardGame boardGame) {
         return boardGameService.addBoardGame(boardGame);
     }
+
+    // get anfrage
+    // Liest ein einzelnes Spiel anhand ID
+    @GetMapping("/{id}")
+    public BoardGame getBoardGameById(@PathVariable String id)
+    // @PathVariable liest den dynamischen Wert aus der URL  zb /123 und übergibt ihn an den Parameter id
+    {
+        return boardGameService.getBoardGameById(id);
+    }
+
+    // put anfrage
+    // aktualisiert die Daten eines bestehenden spiels
+    @PutMapping("/{id}")
+    public BoardGame updateBoardGame(
+            // @PathVariable liefert die ID des zu aktualisierenden Spiels aus der URl
+            @PathVariable String id,
+            // @RequestBody wandelt den json aus dem request body automatisch in ein Java Objekt um
+            @RequestBody BoardGame boardGame
+    ) {
+        return boardGameService.updateBoardGame(id, boardGame);
+    }
+
+    // delete Anfrage
+    // Löscht ein Spiel anhand seiner ID
+    @DeleteMapping("/{id}")
+    public void deleteBoardGame(
+            // @PathVariable liefert die ID des zu löschenden Spiels aus der URL
+            @PathVariable String id
+    ) {
+        boardGameService.deleteBoardGame(id);
+    }
+
+
 }
