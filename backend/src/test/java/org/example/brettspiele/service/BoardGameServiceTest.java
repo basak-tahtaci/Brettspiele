@@ -1,6 +1,7 @@
 package org.example.brettspiele.service;
 
 import org.example.brettspiele.model.BoardGame;
+import org.example.brettspiele.model.BoardGameDto;
 import org.example.brettspiele.repository.BoardGameRepository;
 import org.junit.jupiter.api.Test;
 
@@ -35,13 +36,14 @@ class BoardGameServiceTest {
     @Test
     void addBoardGame_shouldSaveAndReturnGame() {
         // GIVEN
+        BoardGameDto dto = new BoardGameDto("Catan", 3, 4, 90, "Strategie", "catan.jpg");
         BoardGame gameToSave = new BoardGame(null, "Catan", 3, 4, 90, "Strategie", "catan.jpg");
         BoardGame savedGame = new BoardGame("123", "Catan", 3, 4, 90, "Strategie", "catan.jpg");
 
         when(boardGameRepository.save(gameToSave)).thenReturn(savedGame);
 
         // WHEN
-        BoardGame actual = boardGameService.addBoardGame(gameToSave);
+        BoardGame actual = boardGameService.addBoardGame(dto);
 
         // THEN
         assertEquals(savedGame, actual);
@@ -65,11 +67,12 @@ class BoardGameServiceTest {
     @Test
     void updateBoardGame_shouldReturnUpdatedGame() {
         // GIVEN
+        BoardGameDto dto = new BoardGameDto("Die Burgen von Burgund", 1, 4, 150, "Strategie", "");
         BoardGame gameToUpdate = new BoardGame("1", "Die Burgen von Burgund", 1, 4, 150, "Strategie", "");
         when(boardGameRepository.save(gameToUpdate)).thenReturn(gameToUpdate);
 
         // WHEN
-        BoardGame actual = boardGameService.updateBoardGame("1", gameToUpdate);
+        BoardGame actual = boardGameService.updateBoardGame("1", dto);
 
         // THEN
         assertEquals(gameToUpdate, actual);

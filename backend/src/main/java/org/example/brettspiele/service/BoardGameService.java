@@ -1,6 +1,7 @@
 package org.example.brettspiele.service;
 
 import org.example.brettspiele.model.BoardGame;
+import org.example.brettspiele.model.BoardGameDto;
 import org.example.brettspiele.repository.BoardGameRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class BoardGameService {
     // Konstruktor für Dependency Injection:
 
     public BoardGameService(BoardGameRepository boardGameRepository) {
+
         this.boardGameRepository = boardGameRepository;
     }
 
@@ -27,9 +29,18 @@ public class BoardGameService {
     }
 
     // Methode 2 neues Brettspiel hinzufügen
-    public BoardGame addBoardGame(BoardGame boardGame) {
+    public BoardGame addBoardGame(BoardGameDto dto) {
         // Ruft die save() Methode des Repo auf
-        return boardGameRepository.save(boardGame);
+        BoardGame newGame = new BoardGame(
+                null, // MongoDB erzeugt die ID automatisch
+                dto.title(),
+                dto.minPlayers(),
+                dto.maxPlayers(),
+                dto.playTime(),
+                dto.category(),
+                dto.imageUrl()
+        );
+        return boardGameRepository.save(newGame);
     }
 
     // Einzelnes Spiel per ID suchen
@@ -39,15 +50,15 @@ public class BoardGameService {
     }
 
     // Spiel aktualisieren
-    public BoardGame updateBoardGame(String id, BoardGame boardGame) {
+    public BoardGame updateBoardGame(String id, BoardGameDto dto) {
         BoardGame updatedGame = new BoardGame(
                 id,
-                boardGame.title(),
-                boardGame.minPlayers(),
-                boardGame.maxPlayers(),
-                boardGame.playTimeMinutes(),
-                boardGame.category(),
-                boardGame.imageUrl()
+                dto.title(),
+                dto.minPlayers(),
+                dto.maxPlayers(),
+                dto.playTime(),
+                dto.category(),
+                dto.imageUrl()
         );
         return boardGameRepository.save(updatedGame);
     }

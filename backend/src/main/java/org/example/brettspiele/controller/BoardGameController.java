@@ -1,6 +1,7 @@
 package org.example.brettspiele.controller;
 
 import org.example.brettspiele.model.BoardGame;
+import org.example.brettspiele.model.BoardGameDto;
 import org.example.brettspiele.service.BoardGameService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,8 @@ public class BoardGameController {
     // Erstellt ein neues Brettspiel.
     // @RequestBody wandelt die JSON Daten aus dem Request Body automatisch in ein Java Objekt um.
     @PostMapping
-    public BoardGame addBoardGame(@RequestBody BoardGame boardGame) {
-        return boardGameService.addBoardGame(boardGame);
+    public BoardGame addBoardGame(@RequestBody BoardGameDto boardGameDto) {
+        return boardGameService.addBoardGame(boardGameDto);
     }
 
     // get anfrage
@@ -51,9 +52,9 @@ public class BoardGameController {
             // @PathVariable liefert die ID des zu aktualisierenden Spiels aus der URl
             @PathVariable String id,
             // @RequestBody wandelt den json aus dem request body automatisch in ein Java Objekt um
-            @RequestBody BoardGame boardGame
+            @RequestBody BoardGameDto boardGameDto
     ) {
-        return boardGameService.updateBoardGame(id, boardGame);
+        return boardGameService.updateBoardGame(id, boardGameDto);
     }
 
     // delete Anfrage

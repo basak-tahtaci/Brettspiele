@@ -1,6 +1,7 @@
 package org.example.brettspiele.controller;
 
 import org.example.brettspiele.model.BoardGame;
+import org.example.brettspiele.model.BoardGameDto;
 import org.example.brettspiele.service.BoardGameService;
 import org.junit.jupiter.api.Test;
 
@@ -31,16 +32,16 @@ class BoardGameControllerTest {
     @Test
     void addBoardGame_shouldReturnCreatedBoardGame() {
         // GIVEN
-
-        BoardGame newGame = new BoardGame("1", "Catan", 3, 4, 60, "Kosmos", "https://example.com/image.jpg");
-        when(boardGameService.addBoardGame(newGame)).thenReturn(newGame);
+        BoardGameDto inputDto = new BoardGameDto("Catan", 3, 4, 60, "Kosmos", "https://example.com/image.jpg");
+        BoardGame expectedGame = new BoardGame("1", "Catan", 3, 4, 60, "Kosmos", "https://example.com/image.jpg");
+        when(boardGameService.addBoardGame(inputDto)).thenReturn(expectedGame);
 
         // WHEN
-        BoardGame actual = boardGameController.addBoardGame(newGame);
+        BoardGame actual = boardGameController.addBoardGame(inputDto);
 
         // THEN
-        assertEquals(newGame, actual);
-        verify(boardGameService).addBoardGame(newGame);
+        assertEquals(expectedGame, actual);
+        verify(boardGameService).addBoardGame(inputDto);
     }
 
     @Test
@@ -60,15 +61,16 @@ class BoardGameControllerTest {
     @Test
     void updateBoardGame_shouldReturnUpdatedBoardGame() {
         // GIVEN
-        BoardGame updatedGame = new BoardGame("1", "Catan", 3, 4, 90, "Kosmos", "https://example.com/image.jpg");
-        when(boardGameService.updateBoardGame("1", updatedGame)).thenReturn(updatedGame);
+        BoardGameDto inputDto = new BoardGameDto("Catan", 3, 4, 90, "Kosmos", "https://example.com/image.jpg");
+        BoardGame expectedGame = new BoardGame("1", "Catan", 3, 4, 90, "Kosmos", "https://example.com/image.jpg");
+        when(boardGameService.updateBoardGame("1", inputDto)).thenReturn(expectedGame);
 
         // WHEN
-        BoardGame actual = boardGameController.updateBoardGame("1", updatedGame);
+        BoardGame actual = boardGameController.updateBoardGame("1", inputDto);
 
         // THEN
-        assertEquals(updatedGame, actual);
-        verify(boardGameService).updateBoardGame("1", updatedGame);
+        assertEquals(expectedGame, actual);
+        verify(boardGameService).updateBoardGame("1", inputDto);
     }
 
     @Test
