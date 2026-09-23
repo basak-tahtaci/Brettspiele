@@ -10,8 +10,10 @@ public record BoardGame(
         String title,
         int minPlayers,
         int maxPlayers,
-        int playTimeMinutes,
+        int playTime,
         String category,
         String imageUrl
 ) {
 }
+
+//todo später eventuell verlag hinzufügen
