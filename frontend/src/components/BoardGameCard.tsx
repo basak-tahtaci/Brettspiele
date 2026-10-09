@@ -4,10 +4,11 @@ import type { BoardGame } from '../types/BoardGame';
 type BoardGameCardProps = {
     boardGame: BoardGame;
     onDelete: (id: string) => void;
+    onEdit: (game: BoardGame) => void; // Callback Funktion um das gewählte Spiel zu bearbeiten
 };
 
 // Cards komponente um ein Brettspiel anzuzeigen, ondelete löscht
-export const BoardGameCard = ({ boardGame, onDelete }: BoardGameCardProps) => {
+export const BoardGameCard = ({ boardGame, onDelete, onEdit }: BoardGameCardProps) => {
     return (
         <div className="board-game-card">
             {boardGame.imageUrl ? (
@@ -29,6 +30,20 @@ export const BoardGameCard = ({ boardGame, onDelete }: BoardGameCardProps) => {
                     <span>⏱️ {boardGame.playTime} Min.</span>
                 </div>
 
+                {/* Button zum bearbeiten, übergibt das gesamte Spiel Objekt an die übergeordnete Komponente */}
+                <button
+                    onClick={() => onEdit(boardGame)}
+                    style={{
+                        marginTop: '12px',
+                        padding: '6px 12px',
+
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        cursor: 'pointer'
+                    }}
+                >✏️</button>
+
                 <button
                     onClick={() => onDelete(boardGame.id)}
                     style={{
@@ -40,9 +55,7 @@ export const BoardGameCard = ({ boardGame, onDelete }: BoardGameCardProps) => {
                         borderRadius: '6px',
                         cursor: 'pointer'
                     }}
-                >
-                    🗑️
-                </button>
+                >🗑️</button>
             </div>
         </div>
     );

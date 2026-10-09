@@ -5,10 +5,10 @@ import { BoardGameCard } from './BoardGameCard';
 type BoardGameListProps = {
     boardGames: BoardGame[];
     onDeleteGame: (id: string) => void;
-};
+    onEditGame: (game: BoardGame) => void;};
 
 // hier wird eine list der Brettspiele gerendert
-export const BoardGameList = ({ boardGames, onDeleteGame}: BoardGameListProps) => {
+export const BoardGameList = ({ boardGames, onDeleteGame, onEditGame}: BoardGameListProps) => {
     // Wenn das Array leer ist wird ein Hinweis angezeigt
     if (boardGames.length === 0) {
         return <p className="no-games">Keine Brettspiele in der Sammlung vorhanden.</p>;
@@ -23,6 +23,8 @@ export const BoardGameList = ({ boardGames, onDeleteGame}: BoardGameListProps) =
                     key={game.id}
                     boardGame={game}
                     onDelete={onDeleteGame}
+                    // onEditGame wird als Prop an die einzelne Karte weitergereicht
+                    onEdit={onEditGame}
                 />
             ))}
         </div>
