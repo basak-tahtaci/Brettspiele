@@ -70,49 +70,59 @@ export function BoardGameForm({ onAddGame, editingGame, onCancelEdit }: BoardGam
                 // speichert/übergibt die neue daten und leert das formular
                 handleSubmit();
             }}
-            style={{ marginBottom: '30px', padding: '15px', border: '1px solid #ccc', borderRadius: '8px' }}>
-            {/* Dynamische Überschrift je nach Modus */}
-            <h3>{editingGame ? 'Brettspiel bearbeiten' : 'Neues Brettspiel hinzufügen'}</h3>
+            className="form-container"
+        >
+            <h3 className="form-title">
+                {editingGame ? '✏️ Brettspiel bearbeiten' : '➕ Neues Brettspiel hinzufügen'}
+            </h3>
 
-            <div style={{ marginBottom: '10px' }}>
-                <label>Titel: </label>
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <div className="form-grid">
+                <div className="form-group full-width">
+                    <label>Titel</label>
+                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+                </div>
+
+                <div className="form-group full-width">
+                    <label>Kategorie</label>
+                    <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required/>
+                </div>
+
+                <div className="form-group">
+                    <label>Min. Spieler</label>
+                    <input type="number" value={minPlayers} onChange={(e) => setMinPlayers(Number(e.target.value))}
+                           min={1} required/>
+                </div>
+
+                <div className="form-group">
+                    <label>Max. Spieler</label>
+                    <input type="number" value={maxPlayers} onChange={(e) => setMaxPlayers(Number(e.target.value))}
+                           min={1} required/>
+                </div>
+
+                <div className="form-group full-width">
+                    <label>Spieldauer (Minuten)</label>
+                    <input type="number" value={playTime} onChange={(e) => setPlayTime(Number(e.target.value))} min={1}
+                           required/>
+                </div>
+
+                <div className="form-group full-width">
+                    <label>Bild-URL</label>
+                    <input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)}
+                           placeholder="https://..."/>
+                </div>
             </div>
 
-            <div style={{ marginBottom: '10px' }}>
-                <label>Kategorie: </label>
-                <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required />
-            </div>
-
-            <div style={{ marginBottom: '10px' }}>
-                <label>Min. Spieler: </label>
-                <input type="number" value={minPlayers} onChange={(e) => setMinPlayers(Number(e.target.value))} min={1} required />
-
-                <label style={{ marginLeft: '15px' }}>Max. Spieler: </label>
-                <input type="number" value={maxPlayers} onChange={(e) => setMaxPlayers(Number(e.target.value))} min={1} required />
-            </div>
-
-            <div style={{ marginBottom: '10px' }}>
-                <label>Spieldauer (Minuten): </label>
-                <input type="number" value={playTime} onChange={(e) => setPlayTime(Number(e.target.value))} min={1} required />
-            </div>
-
-            <div style={{ marginBottom: '10px' }}>
-                <label>Bild-URL: </label>
-                <input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://..." />
-            </div>
-
-            {/* Dynamischer Beschriftungstext für den Submit Button */}
-            <button type="submit">
-                {editingGame ? 'Änderungen speichern' : 'Spiel speichern'}
-            </button>
-
-            {/* Abbrechen Button wird nur im Bearbeitungsmodus angezeigt */}
-            {editingGame && (
-                <button type="button" onClick={onCancelEdit} style={{ marginLeft: '10px' }}>
-                    Abbrechen
+            <div className="form-actions">
+                <button type="submit" className="btn-primary">
+                    {editingGame ? 'Änderungen speichern' : 'Spiel speichern'}
                 </button>
-            )}
+
+                {editingGame && (
+                    <button type="button" onClick={onCancelEdit} className="btn-secondary">
+                        Abbrechen
+                    </button>
+                )}
+            </div>
         </form>
     );
 }
