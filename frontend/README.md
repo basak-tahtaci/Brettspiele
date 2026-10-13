@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+🎲 Board Game Manager Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eine Full-Stack Webanwendung zur Verwaltung einer Brettspiel-Sammlung. Dieses Projekt ermöglicht das Verwalten
+(Erstellen, Lesen, Aktualisieren und Löschen)
+von Brettspielen über ein modernes Frontend mit Anbindung an ein REST-basiertes Backend.
 
-Currently, two official plugins are available:
+🛠️ Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Backend
 
-## React Compiler
+Java 21 / Spring Boot
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Spring Data MongoDB
 
-## Expanding the ESLint configuration
+Maven
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Testing
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Frontend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+React (mit TypeScript)
 
-```
+Vite
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Axios
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+CSS
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+🚀 Features (CRUD)
 
-```
+📖 Read (GET): Anzeigen aller gespeicherten Brettspiele in einer Übersichtskarte.
+
+➕ Create (POST): Hinzufügen neuer Brettspiele über ein dynamisches Formular (inkl. Bild-URL Support).
+
+✏️ Update (PUT): Bearbeiten bestehender Brettspieldaten mit automatischem Scroll-to-Form und vorgefüllten Werten.
+
+🗑️ Delete (DELETE): Löschen von Spielen direkt per Button auf der Card.
